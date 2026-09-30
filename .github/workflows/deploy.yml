@@ -50,7 +50,7 @@ jobs:
           cp -r index.html css js _site/
 
       - name: Configurar Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Subir artefacto
         uses: actions/upload-pages-artifact@v3
