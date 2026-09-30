@@ -13,6 +13,6 @@
     "node": ">=20"
   },
   "devDependencies": {
-    "html-validate": "^9.0.0"
+    "html-validate": "^11.16.0"
   }
 }
