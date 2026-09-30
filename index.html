@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Equipo Web DevOps</title>
+  <meta name="description" content="Práctica guiada de DevOps con GitHub: ramas, pull requests y pipelines.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>Equipo Web DevOps</h1>
+    <p class="subtitulo">Práctica DevOps</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="sobre">
+      <h2 id="sobre">Sobre el proyecto</h2>
+      <p>
+        Esta página la construye todo el equipo. Cada integrante agrega su
+        tarjeta desde su propia rama, abre un Pull Request y el pipeline
+        valida y publica el sitio automáticamente.
+      </p>
+    </section>
+
+    <section aria-labelledby="equipo-titulo">
+      <h2 id="equipo-titulo">Nuestro equipo</h2>
+      <div id="equipo" class="grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Versión <span id="version"></span> · <span id="anio"></span></p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

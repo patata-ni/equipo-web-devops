@@ -1,0 +1,77 @@
+# =====================================================================
+# PIPELINE DE INTEGRACIÓN CONTINUA (CI)
+# Se ejecuta en cada push a cualquier rama y en cada Pull Request a main.
+# Jobs:  Validar HTML  ─┐
+#        Pruebas (20/22)┴─> Resumen
+# =====================================================================
+name: CI
+
+on:
+  push:
+    branches-ignore: [main]   # main lo cubre el pipeline de despliegue
+  pull_request:
+    branches: [main]
+  workflow_dispatch:           # permite ejecutarlo a mano desde la pestaña Actions
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true     # si haces un push nuevo, cancela la corrida anterior
+
+jobs:
+  validar-html:
+    name: Validar HTML
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Validar index.html
+        run: npm run validar
+
+  pruebas:
+    name: Pruebas (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22]         # se ejecuta una vez por cada versión
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar pruebas
+        run: npm test
+
+  resumen:
+    name: Resumen
+    runs-on: ubuntu-latest
+    needs: [validar-html, pruebas]   # solo corre si los dos anteriores pasan
+    steps:
+      - name: Escribir resumen del pipeline
+        run: |
+          echo "## ✅ Pipeline CI exitoso" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Rama: \`${{ github.ref_name }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Commit: \`${{ github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Autor: @${{ github.actor }}" >> "$GITHUB_STEP_SUMMARY"

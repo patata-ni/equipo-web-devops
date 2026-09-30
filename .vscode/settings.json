@@ -1,0 +1,9 @@
+{
+  "git.autofetch": true,
+  "git.pruneOnFetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": false,
+  "githubPullRequests.pullBranch": "never",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "files.eol": "\n"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "equipo-web-devops",
+  "version": "1.0.0",
+  "description": "Práctica guiada de DevOps con GitHub, ramas, Pull Requests y pipelines",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validar": "html-validate index.html",
+    "test": "node --test",
+    "start": "npx --yes serve ."
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "html-validate": "^9.0.0"
+  }
+}

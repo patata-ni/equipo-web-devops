@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "github.vscode-pull-request-github",
+    "github.vscode-github-actions",
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    "ritwickdey.liveserver"
+  ]
+}

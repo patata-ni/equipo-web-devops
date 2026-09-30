@@ -1,0 +1,4 @@
+# Los "code owners" son solicitados automáticamente como revisores del PR.
+# Reemplaza TU-USUARIO por el usuario de GitHub del líder del equipo.
+*                   @AlbertoAM10
+/.github/           @AlbertoAM10

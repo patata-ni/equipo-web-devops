@@ -1,0 +1,62 @@
+# =====================================================================
+# PIPELINE DE DESPLIEGUE CONTINUO (CD)
+# Se ejecuta cuando se hace merge a main. Prueba, empaqueta y publica
+# el sitio en GitHub Pages.
+#   Probar ──> Publicar
+# =====================================================================
+name: Deploy a GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  probar:
+    name: Probar antes de publicar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run validar
+      - run: npm test
+
+  publicar:
+    name: Publicar sitio
+    needs: probar
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Preparar carpeta del sitio
+        run: |
+          mkdir _site
+          cp -r index.html css js _site/
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir artefacto
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Desplegar
+        id: deployment
+        uses: actions/deploy-pages@v4
