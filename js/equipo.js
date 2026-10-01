@@ -8,9 +8,10 @@ export const equipo = [
   { nombre: "Alberto Avendaño Muñoz", rol: "Líder de proyecto", github: "AlbertoAM10" },
 
   // --- Integrante 1 ---
+  { nombre: "Tania Gonzalez", rol: "Desarrolladora", github: "patata-ni" },
 
   // --- Integrante 2 ---
-
+ { nombre: "Alondra Aimee", rol: "Desarrolladora", github: "AlondraGomezz" },
   // --- Integrante 3 ---
 
   // --- Integrante 4 ---
