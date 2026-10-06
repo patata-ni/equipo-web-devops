@@ -11,8 +11,6 @@ export const equipo = [
   { nombre: "Tania Gonzalez", rol: "Desarrolladora", github: "patata-ni" },
 
   // --- Integrante 2 ---
- { nombre: "Alondra Aimee", rol: "Desarrolladora", github: "AlondraGomezz" },
-  // --- Integrante 3 ---
+ { nombre: "Alondra Gomez", rol: "Desarrolladora", github: "AlondraGomezz" },
 
-  // --- Integrante 4 ---
 ];
