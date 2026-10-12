@@ -13,4 +13,7 @@ export const equipo = [
   // --- Integrante 2 ---
  { nombre: "Alondra Gomez", rol: "Desarrolladora", github: "AlondraGomezz" },
 
+   // --- Integrante prueba (provoca fallo intencional) ---
+  { nombre: "Prueba Rota", rol: "QA", github: "usuario con espacios" },
+
 ];
