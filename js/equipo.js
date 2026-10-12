@@ -13,4 +13,10 @@ export const equipo = [
   // --- Integrante 2 ---
  { nombre: "Alondra Gomez", rol: "Desarrolladora", github: "AlondraGomezz" },
 
+ // --- Prueba de pipeline roto ---
+{
+  nombre: "Prueba Rota",
+  rol: "QA",
+  github: "usuario con espacios"
+},
 ];
